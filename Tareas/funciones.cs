@@ -1,4 +1,6 @@
 using EspacioTarea;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace espacioFunciones
 {
@@ -38,6 +40,16 @@ namespace espacioFunciones
             }
             Console.WriteLine($"=====================================================");
 
+        }
+
+        public static void GuardarListaJson(List<Tarea> listaTareas,string NombreArchivo)
+        {
+            JsonSerializerOptions opciones = new JsonSerializerOptions();
+            opciones.WriteIndented = true;
+            string listaSerializada = JsonSerializer.Serialize(listaTareas,opciones);
+            StreamWriter archivo = new StreamWriter(NombreArchivo);
+            archivo.Write(listaSerializada);
+            archivo.Flush();
         }
     }
 }

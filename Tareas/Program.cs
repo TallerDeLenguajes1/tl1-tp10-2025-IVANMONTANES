@@ -19,12 +19,18 @@ List<Tarea> listaTareas = JsonSerializer.Deserialize<List<Tarea>>(responseBody);
 List<Tarea> listaPendientes = new List<Tarea>();
 List<Tarea> listaCompletadas = new List<Tarea>();
 
+
 // recorremos la lista //
 Funciones.CargarListaSegunEstado(listaCompletadas, listaPendientes, listaTareas);
+
 
 // mostramos ambas listas //
 Funciones.MostrarLista("LISTA PENDIENTES", listaPendientes);
 Funciones.MostrarLista("LISTA COMPLETADAS", listaCompletadas);
 
-// seraliazamos la lista de tareas y la guardamos en un json //
+
+// serialiazamos la lista de tareas y la guardamos en un json //
+Funciones.GuardarListaJson(listaTareas, "tareas.json");
+
+
 
