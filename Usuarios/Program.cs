@@ -1,9 +1,10 @@
-﻿// PETICION A LA API //
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using EspacioFunciones;
 using EspacioUsuario;
 
+// PETICION A LA API //
 HttpClient cliente = new HttpClient();
 
 // REALIZAMOS LA SOLICITUD GET //
@@ -19,21 +20,4 @@ string responseBody = await response.Content.ReadAsStringAsync();
 List<Usuario> listaUsuarios = JsonSerializer.Deserialize<List<Usuario>>(responseBody);
 
 // MOSTRAMOS LOS DATOS DE LOS PRIMEROS 5 USUARIOS //
-int mostrados = 0;
-foreach (Usuario usuario in listaUsuarios)
-{
-    mostrados++;
-    if (mostrados <= 5)
-    {
-        Console.WriteLine($"============== USUARIO ==============");
-        Console.WriteLine($"Nombre = {usuario.name}");
-        Console.WriteLine($"Correo Electronico = {usuario.email}");
-        Console.WriteLine("===== DOMICILIO =====");
-        Console.WriteLine($"Cuidad = {usuario.address.city}");
-        Console.WriteLine($"Calle = {usuario.address.street}");
-        Console.WriteLine($"Suite = {usuario.address.suite}");
-    }else{
-        break;
-    }
-    
-}
+Funciones.MostrarNUsuarios(5, listaUsuarios);
